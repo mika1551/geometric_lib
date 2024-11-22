@@ -1,17 +1,31 @@
 import circle
 import square
-
+import triangle
 
 figs = ['circle', 'square']
 funcs = ['perimeter', 'area']
-sizes = {}
+sizes = {
+        'cicle-area':1,
+        'cicle-perimeter':1,
+        'square-area':1,
+        'square-perimeter':1,
+        'triangle-area':3,
+        'triangle-perimeter':3,
+        }
 
 def calc(fig, func, size):
 	assert fig in figs
 	assert func in funcs
-
+	key=f'{fig}-{func}'
+	expected_args = size.get(key)
+	assert expected_args is not None
+	assert len(size) == expected_args
+	assert all (s >= 0 for s in size)
+	if fig == 'triangle':
+                a,b,c = size
+                assert a + b > c and a + c > b and b + c > a
 	result = eval(f'{fig}.{func}(*{size})')
-	print(f'{func} of {fig} is {result}')
+	return result
 
 if __name__ == "__main__":
 	func = ''
@@ -31,3 +45,4 @@ if __name__ == "__main__":
 
 
 
+print(f'{func} of {fig} is {result}')
