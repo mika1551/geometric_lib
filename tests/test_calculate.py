@@ -1,14 +1,16 @@
 import unittest
+import math
 from calculate import calc
+
 
 class TestCalculate(unittest.TestCase):
     def test_circle_area(self):
-        self.assertAlmostEqual(calc('circle', 'area', [1]), 3.141592653589793)
-        self.assertAlmostEqual(calc('circle', 'area', [2]), 12.566370614359172)
+        self.assertAlmostEqual(calc('circle', 'area', [1]), math.pi)
+        self.assertAlmostEqual(calc('circle', 'area', [2]), 4 * math.pi)
 
     def test_circle_perimeter(self):
-        self.assertAlmostEqual(calc('circle', 'perimeter', [1]), 6.283185307179586)
-        self.assertAlmostEqual(calc('circle', 'perimeter', [2]), 12.566370614359172)
+        self.assertAlmostEqual(calc('circle', 'perimeter', [1]), 2 * math.pi)
+        self.assertAlmostEqual(calc('circle', 'perimeter', [2]), 4 * math.pi)
 
     def test_square_area(self):
         self.assertEqual(calc('square', 'area', [1]), 1)
@@ -44,7 +46,7 @@ class TestCalculate(unittest.TestCase):
 
     def test_invalid_triangle_sides(self):
         with self.assertRaises(AssertionError):
-            calc('triangle', 'area', [1, 2, 10])  # Стороны не могут образовать треугольник
+            calc('triangle', 'area', [1, 2, 10]) 
 
 
 if __name__ == "__main__":
