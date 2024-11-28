@@ -1,9 +1,3 @@
-import circle
-import square
-import triangle
-
-figs = ['circle', 'square']
-funcs = ['perimeter', 'area']
 sizes = {
         'cicle-area':1,
         'cicle-perimeter':1,
@@ -12,6 +6,8 @@ sizes = {
         'triangle-area':3,
         'triangle-perimeter':3,
         }
+figs = ['circle', 'square']
+funcs = ['perimeter', 'area']
 
 def calc(fig, func, size):
 	assert fig in figs
@@ -30,7 +26,7 @@ def calc(fig, func, size):
 if __name__ == "__main__":
 	func = ''
 	fig = ''
-	size = list()
+	size = []
     
 	while fig not in figs:
 		fig = input(f"Enter figure name, avaliable are {figs}:\n")
@@ -41,8 +37,8 @@ if __name__ == "__main__":
 	while len(size) != sizes.get(f"{func}-{fig}", 1):
 		size = list(map(int, input("Input figure sizes separated by space, 1 for circle and square\n").split(' ')))
 	
-	calc(fig, func, size)
+	result = calc(fig, func, size)
 
 
 
-print(f'{func} of {fig} is {result}')
+print(f'Result: {result}')
