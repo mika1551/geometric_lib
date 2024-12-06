@@ -1,6 +1,5 @@
 import unittest
-from shapes.triangle import area, perimeter
-
+from triangle import area, perimeter
 class TestTriangleFunctions(unittest.TestCase):
     def test_area_valid_triangle(self):
         self.assertAlmostEqual(area(3, 4, 5), 6.0)
