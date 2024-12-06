@@ -1,5 +1,5 @@
 import unittest
-from shapes.circle import area, perimeter
+from circle import area, perimeter
 from math import pi
 
 class TestCircleFunctions(unittest.TestCase):
