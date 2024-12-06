@@ -1,12 +1,11 @@
-def area(a):
-    if (a < 0):
-        raise ValueError("Can't use '-' numbers")
+import math
 
-    return a * a
+def area(radius):
+    if radius < 0:
+        raise ValueError("Radius cannot be negative.")
+    return math.pi * radius ** 2
 
-
-def perimeter(a):
-    if (a < 0):
-        # added verification of borders cuz them cant be below zeros
-        raise ValueError("Can't use '-' numbers")
-    return 4 * a
+def perimeter(radius):
+    if radius < 0:
+        raise ValueError("Radius cannot be negative.")
+    return 2 * math.pi * radius
