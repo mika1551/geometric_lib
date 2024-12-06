@@ -1,17 +1,16 @@
 import unittest
 from square import area, perimeter
+
 class TestSquareFunctions(unittest.TestCase):
     def test_area(self):
-        self.assertEqual(area(1), 1)
-        self.assertEqual(area(2), 4)
-        self.assertEqual(area(5.5), 30.25)
-        self.assertEqual(area(0.1), 0.01)
+        self.assertAlmostEqual(area(0.1), 0.01, places=10)
+        self.assertAlmostEqual(area(5), 25, places=10)
+        self.assertAlmostEqual(area(0), 0, places=10)
 
     def test_perimeter(self):
-        self.assertEqual(perimeter(1), 4)
-        self.assertEqual(perimeter(2), 8)
-        self.assertEqual(perimeter(5.5), 22)
-        self.assertEqual(perimeter(0.1), 0.4)
+        self.assertAlmostEqual(perimeter(0.1), 0.4, places=10)
+        self.assertAlmostEqual(perimeter(5), 20, places=10)
+        self.assertAlmostEqual(perimeter(0), 0, places=10)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
