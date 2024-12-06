@@ -19,11 +19,11 @@ class TestCalculate(unittest.TestCase):
             calc('pentagon', 'area', [1])
 
     def test_invalid_function(self):
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             calc('circle', 'volume', [1])
 
     def test_invalid_size_length(self):
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             calc('circle', 'area', [1, 2])
 
     def test_invalid_triangle_sides(self):
