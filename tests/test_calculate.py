@@ -1,6 +1,5 @@
 import unittest
-from shapes.calculate import calc
-
+from calculate import calc
 class TestCalculateFunctions(unittest.TestCase):
     def test_valid_calculations(self):
         self.assertEqual(calc('circle', 'area', [1]), 3.141592653589793)
