@@ -1,6 +1,7 @@
 import unittest
 from calculate import calc
 
+
 class TestCalculate(unittest.TestCase):
     def test_calc_circle(self):
         self.assertAlmostEqual(calc('circle', 'area', [1]), 3.141592653589793, places=10)
@@ -19,16 +20,17 @@ class TestCalculate(unittest.TestCase):
             calc('pentagon', 'area', [1])
 
     def test_invalid_function(self):
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             calc('circle', 'volume', [1])
 
     def test_invalid_size_length(self):
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             calc('circle', 'area', [1, 2])
 
     def test_invalid_triangle_sides(self):
         with self.assertRaises(ValueError):
             calc('triangle', 'area', [1, 2, 10])
+
 
 if __name__ == '__main__':
     unittest.main()
