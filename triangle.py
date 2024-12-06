@@ -1,15 +1,19 @@
-def area(a, b, c):
-    if (a + b > abs(c) and a + c > abs(b) and b + c > abs(a)):
-        p = (a + b + c) / 2
-        # before return semi-perimeter changed on geron formula;
-        return (p * (p - a) * (p - b) * (p - c))/2
-    else:
-        # added verification of existing triangle
-        raise ValueError("Invalid triangle sides")
+import math
 
+def area(a, b, c):
+    if a < 0 or b < 0 or c < 0:
+        raise ValueError("Side lengths cannot be negative.")
+    if a + b <= c or a + c <= b or b + c <= a:
+        raise ValueError("Invalid triangle sides")
+    
+    # Геронова формула для площади треугольника
+    p = (a + b + c) / 2
+    return math.sqrt(p * (p - a) * (p - b) * (p - c))
 
 def perimeter(a, b, c):
-    if (a + b > abs(c) and a + c > abs(b) and b + c > abs(a)):
-        return a + b + c
-    else:
+    if a < 0 or b < 0 or c < 0:
+        raise ValueError("Side lengths cannot be negative.")
+    if a + b <= c or a + c <= b or b + c <= a:
         raise ValueError("Invalid triangle sides")
+    
+    return a + b + c
