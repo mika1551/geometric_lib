@@ -1,7 +1,11 @@
-
 def area(a):
-    return  a * a
+    if (a < 0):
+        raise ValueError("Can't use negative numbers")
 
+    return a * a
 
 def perimeter(a):
+    if (a < 0):
+        # added verification of borders cuz them cant be below zeros
+        raise ValueError("Can't use negative numbers")
     return 4 * a
