@@ -1,6 +1,5 @@
 import unittest
-from shapes.square import area, perimeter
-
+from square import area, perimeter
 class TestSquareFunctions(unittest.TestCase):
     def test_area(self):
         self.assertEqual(area(1), 1)
