@@ -1,3 +1,5 @@
+import circle
+import square
 sizes = {
     'circle-area': 1,
     'circle-perimeter': 1,
