@@ -1,5 +1,6 @@
 import math
 
+
 def calc(figure, function, size):
     if figure == 'circle':
         if len(size) != 1:
