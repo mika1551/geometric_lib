@@ -1,52 +1,44 @@
-import circle
-import square
-import triangle
+import math
 
-sizes = {
-    'circle-area': 1,
-    'circle-perimeter': 1,
-    'square-area': 1,
-    'square-perimeter': 1,
-    'triangle-area': 3,
-    'triangle-perimeter': 3,
-}
-figs = ['circle', 'square', 'triangle']
-funcs = ['perimeter', 'area']
-
-def calc(fig, func, size):
-    if fig not in figs:
-        raise ValueError("Invalid figure.")
-    if func not in funcs:
-        raise ValueError("Invalid function.")
-    
-    key = f'{fig}-{func}'
-    expected_args = sizes.get(key)
-    if expected_args is None:
-        raise ValueError("Invalid function-figure combination.")
-    
-    if len(size) != expected_args:
-        raise ValueError(f"Expected {expected_args} arguments, got {len(size)}.")
-    
-    if any(s < 0 for s in size):
-        raise ValueError("Size values must be non-negative.")
-    
-    if fig == 'triangle':
+def calc(figure, function, size):
+    if figure == 'circle':
+        if len(size) != 1:
+            raise ValueError(f"Expected 1 arguments, got {len(size)}.")
+        radius = size[0]
+        if radius <= 0:
+            raise ValueError("Radius must be positive.")
+        if function == 'area':
+            return math.pi * radius ** 2
+        elif function == 'perimeter':
+            return 2 * math.pi * radius
+        else:
+            raise ValueError("Invalid function.")
+    elif figure == 'square':
+        if len(size) != 1:
+            raise ValueError(f"Expected 1 arguments, got {len(size)}.")
+        side = size[0]
+        if side <= 0:
+            raise ValueError("Side must be positive.")
+        if function == 'area':
+            return side ** 2
+        elif function == 'perimeter':
+            return 4 * side
+        else:
+            raise ValueError("Invalid function.")
+    elif figure == 'triangle':
+        if len(size) != 3:
+            raise ValueError(f"Expected 3 arguments, got {len(size)}.")
         a, b, c = size
+        if a <= 0 or b <= 0 or c <= 0:
+            raise ValueError("All sides must be positive.")
         if a + b <= c or a + c <= b or b + c <= a:
-            raise ValueError("Invalid triangle sides")
-    
-    if fig == 'circle':
-        if func == 'area':
-            return circle.area(*size)
-        if func == 'perimeter':
-            return circle.perimeter(*size)
-    elif fig == 'square':
-        if func == 'area':
-            return square.area(*size)
-        if func == 'perimeter':
-            return square.perimeter(*size)
-    elif fig == 'triangle':
-        if func == 'area':
-            return triangle.area(*size)
-        if func == 'perimeter':
-            return triangle.perimeter(*size)
+            raise ValueError("Invalid triangle sides.")
+        if function == 'area':
+            s = (a + b + c) / 2
+            return math.sqrt(s * (s - a) * (s - b) * (s - c))
+        elif function == 'perimeter':
+            return a + b + c
+        else:
+            raise ValueError("Invalid function.")
+    else:
+        raise ValueError("Invalid figure.")
