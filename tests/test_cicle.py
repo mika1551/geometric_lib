@@ -11,6 +11,16 @@ class TestCircleFunctions(unittest.TestCase):
         self.assertAlmostEqual(perimeter(1), 6.283185307179586, places=10)
         self.assertAlmostEqual(perimeter(0), 0, places=10)
 
+    def test_negative_radius(self):
+        with self.assertRaises(ValueError):
+            area(-1)
+        with self.assertRaises(ValueError):
+            perimeter(-1)
+
+    def test_large_radius(self):
+        self.assertAlmostEqual(area(1e6), math.pi * (1e6) ** 2, places=10)
+        self.assertAlmostEqual(perimeter(1e6), 2 * math.pi * 1e6, places=10)
+
 
 if __name__ == '__main__':
     unittest.main()
