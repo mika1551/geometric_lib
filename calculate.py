@@ -1,5 +1,6 @@
 import math
 
+
 def calc(figure, function, size):
     def validate_size(expected, actual):
         if len(actual) != expected:
@@ -10,13 +11,13 @@ def calc(figure, function, size):
     def circle_functions(radius, func):
         if func == 'area':
             return math.pi * radius[0] ** 2
-        elif func == 'perimeter':
+        if func == 'perimeter':
             return 2 * math.pi * radius[0]
 
     def square_functions(side, func):
         if func == 'area':
             return side[0] ** 2
-        elif func == 'perimeter':
+        if func == 'perimeter':
             return 4 * side[0]
 
     def triangle_functions(sides, func):
@@ -26,7 +27,7 @@ def calc(figure, function, size):
         if func == 'area':
             s = (a + b + c) / 2
             return math.sqrt(s * (s - a) * (s - b) * (s - c))
-        elif func == 'perimeter':
+        if func == 'perimeter':
             return a + b + c
 
     figures = {
@@ -37,10 +38,11 @@ def calc(figure, function, size):
 
     if figure not in figures:
         raise ValueError("Invalid figure.")
-    
+
     figure_data = figures[figure]
     validate_size(figure_data['params'], size)
+
     if function not in ['area', 'perimeter']:
         raise ValueError("Invalid function.")
-    
+
     return figure_data['functions'](size, function)
