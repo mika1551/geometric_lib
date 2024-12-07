@@ -25,8 +25,7 @@ def calc(figure, function, size):
             'perimeter': lambda s: 4 * s,
         }
 
-    def triangle(sides):
-        a, b, c = sides
+    def triangle(a, b, c):
         if a + b <= c or a + c <= b or b + c <= a:
             raise ValueError("Invalid triangle sides.")
         return {
@@ -39,7 +38,7 @@ def calc(figure, function, size):
     figures = {
         'circle': {'params': 1, 'functions': circle},
         'square': {'params': 1, 'functions': square},
-        'triangle': {'params': 3, 'functions': triangle},
+        'triangle': {'params': 3, 'functions': lambda sides: triangle(*sides)},
     }
 
     if figure not in figures:
@@ -48,5 +47,8 @@ def calc(figure, function, size):
     figure_data = figures[figure]
     validate_size(figure_data['params'], size)
 
-    formulae = figure_data['functions'](*size)
+    if function not in ['area', 'perimeter']:
+        raise ValueError("Invalid function.")
+
+    formulae = figure_data['functions'](size)
     return calculate_area_or_perimeter(size, function, formulae)
