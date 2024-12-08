@@ -1,33 +1,37 @@
-import circle
-import square
+from circle import area as circle_area, perimeter as circle_perimeter
+from square import area as square_area, perimeter as square_perimeter
+from triangle import area as triangle_area, perimeter as triangle_perimeter
 
 
-figs = ['circle', 'square']
-funcs = ['perimeter', 'area']
-sizes = {}
+def calc(figure, function, size):
+    def validate_size(expected, actual):
+        if len(actual) != expected:
+            raise ValueError(f"Expected {expected} arguments, got {len(actual)}.")
+        if any(val <= 0 for val in actual):
+            raise ValueError("All dimensions must be positive.")
 
-def calc(fig, func, size):
-	assert fig in figs
-	assert func in funcs
+    figures = {
+        'circle': {
+            'params': 1,
+            'functions': {'area': circle_area, 'perimeter': circle_perimeter},
+        },
+        'square': {
+            'params': 1,
+            'functions': {'area': square_area, 'perimeter': square_perimeter},
+        },
+        'triangle': {
+            'params': 3,
+            'functions': {'area': triangle_area, 'perimeter': triangle_perimeter},
+        },
+    }
 
-	result = eval(f'{fig}.{func}(*{size})')
-	print(f'{func} of {fig} is {result}')
+    if figure not in figures:
+        raise ValueError("Invalid figure.")
 
-if __name__ == "__main__":
-	func = ''
-	fig = ''
-	size = list()
-    
-	while fig not in figs:
-		fig = input(f"Enter figure name, avaliable are {figs}:\n")
-	
-	while func not in funcs:
-		func = input(f"Enter function name, avaliable are {funcs}:\n")
-	
-	while len(size) != sizes.get(f"{func}-{fig}", 1):
-		size = list(map(int, input("Input figure sizes separated by space, 1 for circle and square\n").split(' ')))
-	
-	calc(fig, func, size)
+    figure_data = figures[figure]
+    validate_size(figure_data['params'], size)
 
+    if function not in figure_data['functions']:
+        raise ValueError("Invalid function.")
 
-
+    return figure_data['functions'][function](*size)
